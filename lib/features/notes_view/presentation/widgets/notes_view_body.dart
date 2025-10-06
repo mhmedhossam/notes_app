@@ -1,11 +1,62 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gap/flutter_gap.dart';
-import 'package:notes_app/core/utils/textstyles.dart';
+
+import 'package:notes_app/features/notes_view/data/models/note_model.dart';
 import 'package:notes_app/features/notes_view/presentation/widgets/custom_app_bar.dart';
+
+import 'note_list_view.dart';
 
 class NotesViewBody extends StatelessWidget {
   final VoidCallback toggleDark;
-  const NotesViewBody({super.key, required this.toggleDark});
+  final List<NoteModel> noteModel = [
+    NoteModel(
+      title: "Flutter Basics",
+      subTitle: "Learn how to build your first Flutter app.",
+      onPressed: () {
+        print("Flutter Basics clicked");
+      },
+      color: Colors.amber,
+      date:
+          "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+    ),
+    NoteModel(
+      title: "State Management",
+      subTitle: "Understand Provider, Bloc, and Riverpod.",
+      onPressed: () {
+        print("State Management clicked");
+      },
+      color: Colors.lightBlue,
+      date:
+          "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+    ),
+    NoteModel(
+      title: "Animations",
+      subTitle: "Add smooth transitions and motion to your UI.",
+      onPressed: () {
+        print("Animations clicked");
+      },
+      color: Colors.purpleAccent,
+      date: "${DateTime(DateTime.april).day}",
+    ),
+    NoteModel(
+      title: "Firebase Integration",
+      subTitle: "Connect your Flutter app with Firebase.",
+      onPressed: () {
+        print("Firebase Integration clicked");
+      },
+      color: Colors.greenAccent,
+      date: "${DateTime(DateTime.april).day}",
+    ),
+    NoteModel(
+      title: "Responsive Design",
+      subTitle: "Make your UI adaptive for all screen sizes.",
+      onPressed: () {
+        print("Responsive Design clicked");
+      },
+      color: Colors.orangeAccent,
+      date: "${DateTime(DateTime.april).day}",
+    ),
+  ];
+  NotesViewBody({super.key, required this.toggleDark});
 
   @override
   Widget build(BuildContext context) {
@@ -16,44 +67,7 @@ class NotesViewBody extends StatelessWidget {
           children: [
             CustomAppBar(toggleDark: toggleDark),
 
-            Container(
-              color: Colors.amber,
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  ListTile(
-                    trailing: IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.delete,
-                        color: const Color.fromARGB(255, 0, 0, 0),
-                      ),
-                    ),
-                    subtitle: Text(
-                      "Build your  hfghfghgf hgfhfghgf hfghfghCareer with hhjhjh tharwat thamy gfhgfhgfhfghgfhgfhgfhfghfghfghgfhfghgfhgfh hgfhfghfghfgh hgfhfghfhfgh fgghfghfgghfg hfghfg",
-                      softWrap: true,
-                      style: TextStyle(
-                        fontSize: 20,
-                      ).copyWith(color: const Color.fromARGB(77, 0, 0, 0)),
-                    ),
-                    title: Text(
-                      "Flutter tips",
-                      style: Textstyles.textStyle30.copyWith(
-                        color: Colors.black,
-                      ),
-                    ),
-                  ),
-
-                  Text(
-                    "may 21,2012",
-                    style: Textstyles.textStyle16.copyWith(
-                      color: const Color.fromARGB(122, 0, 0, 0),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            NoteListView(noteModel: noteModel),
           ],
         ),
       ),
