@@ -4,19 +4,35 @@ import 'package:notes_app/features/notes_view/presentation/widgets/notes_view_bo
 
 import 'custom_note_container.dart';
 
-class NoteListView extends StatelessWidget {
-  const NoteListView({super.key, required this.noteModel});
+class NoteListViewbuild extends StatefulWidget {
+  const NoteListViewbuild({
+    super.key,
+    required this.listNoteModel,
+    required this.colors,
+  });
 
-  final List<NoteModel> noteModel;
+  final List<NoteModel> listNoteModel;
+  final List<Color> colors;
 
+  @override
+  State<NoteListViewbuild> createState() => _NoteListViewbuildState();
+}
+
+class _NoteListViewbuildState extends State<NoteListViewbuild> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        itemCount: noteModel.length,
-
+        itemCount: widget.listNoteModel.length,
         itemBuilder: (context, i) {
-          return CustomNoteContainer(noteModel: noteModel[i]);
+          return CustomNoteContainer(
+            onDelete: () {
+              widget.listNoteModel.removeAt(i);
+              setState(() {});
+            },
+            noteModel: widget.listNoteModel[i],
+            color: widget.colors[i % widget.colors.length],
+          );
         },
       ),
     );

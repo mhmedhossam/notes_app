@@ -5,14 +5,21 @@ import 'package:notes_app/features/notes_view/data/models/note_model.dart';
 
 class CustomNoteContainer extends StatelessWidget {
   final NoteModel noteModel;
-  const CustomNoteContainer({super.key, required this.noteModel});
+  final Color color;
+  final VoidCallback onDelete;
+  const CustomNoteContainer({
+    super.key,
+    required this.noteModel,
+    required this.color,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
-        color: noteModel.color,
+        color: color,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: EdgeInsets.only(top: 20, bottom: 20, left: 16),
@@ -23,7 +30,7 @@ class CustomNoteContainer extends StatelessWidget {
         children: [
           ListTile(
             trailing: IconButton(
-              onPressed: noteModel.onPressed,
+              onPressed: onDelete,
               icon: Icon(
                 FontAwesomeIcons.trash,
                 size: 26,
