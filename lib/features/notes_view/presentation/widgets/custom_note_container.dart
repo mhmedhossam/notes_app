@@ -10,7 +10,7 @@ class CustomNoteContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         color: noteModel.color,
         borderRadius: BorderRadius.circular(20),
